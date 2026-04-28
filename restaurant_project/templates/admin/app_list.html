@@ -1,0 +1,89 @@
+{% load i18n %}
+
+<div class="app-list-wrap">
+{% for app in app_list %}
+  <div class="app-{{ app.app_label }} module admin-app-card">
+    <table>
+      <caption>
+        {% if app.app_url %}
+          <a href="{{ app.app_url }}" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a>
+        {% else %}
+          <span class="section">{{ app.name }}</span>
+        {% endif %}
+      </caption>
+      <tbody>
+      {% for model in app.models %}
+        <tr class="model-{{ model.object_name|lower }}">
+          <th scope="row">
+            {% if model.admin_url %}
+              <a href="{{ model.admin_url }}">{{ model.name }}</a>
+            {% else %}
+              {{ model.name }}
+            {% endif %}
+            <div class="model-help">
+              {% if model.object_name == "HeroImage" %}
+                Controls the two main hero banner images shown on the homepage.
+              {% elif model.object_name == "Category" %}
+                Creates menu categories like Burgers, Pizza, Drinks, and Dessert.
+              {% elif model.object_name == "Item" %}
+                Adds actual menu items under a category. Each item can have multiple size/price variants.
+              {% elif model.object_name == "DailyDeal" %}
+                Builds the homepage deal of the day section and its grouped deal items.
+              {% elif model.object_name == "DealSection" %}
+                Internal deal grouping used under the daily deal. Usually managed from Daily Deal.
+              {% elif model.object_name == "DealItem" %}
+                Individual lines inside a daily deal section. Usually managed from Daily Deal.
+              {% elif model.object_name == "WhySection" %}
+                Controls the "Why people choose us" section and its feature cards.
+              {% elif model.object_name == "WhyFeature" %}
+                Individual features shown inside the Why Section.
+              {% elif model.object_name == "PopularDealsSection" %}
+                Controls the homepage popular deals cards.
+              {% elif model.object_name == "PopularDeal" %}
+                Individual homepage popular deal cards. Usually managed from Popular Deals Section.
+              {% elif model.object_name == "OurSpecial" %}
+                Controls the homepage special item block and its selling points.
+              {% elif model.object_name == "OurSpecialCard" %}
+                Small supporting cards shown inside the Our Special section.
+              {% elif model.object_name == "SiteSettings" %}
+                Main pricing controls for tax, delivery fee, and discounts.
+              {% elif model.object_name == "LiveChatThread" %}
+                Customer chat inbox with visitor identity and conversation timeline.
+              {% elif model.object_name == "LiveChatMessage" %}
+                Read-only live chat messages exchanged between customers and support.
+              {% elif model.object_name == "Order" %}
+                Live order management. Search by daily order number or tracking ID and update status quickly.
+              {% elif model.object_name == "OrderStatusAutomationRule" %}
+                Defines automatic status changes such as confirmed to preparing after a set number of minutes.
+              {% elif model.object_name == "OrderStatusHistory" %}
+                Read-only audit trail showing every manual and automatic order status update.
+              {% elif model.object_name == "Feedback" %}
+                Customer feedback and ratings submitted from the homepage.
+              {% elif model.object_name == "UserProfile" %}
+                Customer profile data captured from login and checkout.
+              {% else %}
+                Manage records for this section.
+              {% endif %}
+            </div>
+          </th>
+          {% if model.add_url %}
+            <td><a href="{{ model.add_url }}" class="addlink">{% translate 'Add' %}</a></td>
+          {% else %}
+            <td></td>
+          {% endif %}
+          {% if model.admin_url and show_changelinks %}
+            {% if model.view_only %}
+              <td><a href="{{ model.admin_url }}" class="viewlink">{% translate 'View' %}</a></td>
+            {% else %}
+              <td><a href="{{ model.admin_url }}" class="changelink">{% translate 'Change' %}</a></td>
+            {% endif %}
+          {% elif show_changelinks %}
+            <td></td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endfor %}
+</div>

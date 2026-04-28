@@ -1,0 +1,416 @@
+[data-theme="light"] {
+    --color-bg-page: #eef3f8;
+    --color-surface-900: #ffffff;
+    --color-surface-800: #f6f9fd;
+    --color-surface-700: #edf3fb;
+    --color-text-primary: #1b2738;
+    --color-text-muted: #56657a;
+    --color-text-soft: #66758a;
+    --color-border-soft: rgba(31, 63, 108, 0.14);
+    --color-accent: #ff6d3d;
+    --color-accent-strong: #ff9461;
+    --color-accent-secondary: #4f7cff;
+    --color-shadow: rgba(20, 45, 78, 0.12);
+
+    --header-bg-color: #ffffff;
+    --header-btn-color: #24364d;
+    --header-btn-bg-color: #f7faff;
+    --header-btn-shadow-color: rgba(42, 70, 110, 0.14);
+    --header-btn-hover-bg-color: #ecf3ff;
+
+    --heading-span-color: #ff6d3d;
+    --heading-color: #1f2f45;
+    --sub-heading-color: #627388;
+    --best-food-sub-heading: #e66d3a;
+    --footer-li-color: #3a4d66;
+    --text-color: #5c6d82;
+    --spacing-unit: 1rem;
+    --items-section-bg-color: #f3f7fc;
+    --deals-section-bg-color: #eef4fb;
+    --footer-section-bg-color: #e4ecf6;
+    --hyderix-section-bg-color: #d9e4f1;
+    --item-heading-color-one: #1f2f45;
+    --item-heading-color-two: #ff7f4f;
+
+    --topbar-bg-color: #f0f5fb;
+    --topbar-btn-color: #23364d;
+    --topbar-btn-bg-color: #f8fbff;
+    --topbar-btn-active-bg-color: #ff7b49;
+    --home-bg-color: #eef3f8;
+    --section-heading-color: #1f2f45;
+    --card-shadow-color: rgba(17, 42, 74, 0.11);
+
+    --cart-page-bg-color: #eef3f8;
+    --section-shadow-color: rgba(17, 42, 74, 0.12);
+    --line-color: #ff8a54;
+    --border-color: #d3ddec;
+    --type-color: #6e7d92;
+    --input-bg-color: #ffffff;
+    --input-focus-border-color: #6a8dff;
+    --input-focus-bg-color: #fbfdff;
+    --bill-box-bg-color: #ffffff;
+    --total-color: #e56b34;
+    --qty-bg-color: #ff8450;
+    --qty-sign-color: #ffffff;
+    --qty-active-bg-color: rgba(255, 132, 80, 0.18);
+
+    --cart-popup-text-color: #24364d;
+    --cart-popup-img-bg-color: linear-gradient(135deg, #ff9a5c, #ff6d45);
+    --cart-section-bg-color: #ffffff;
+    --cart-popup-price-color: #eb6f3b;
+    --close-sign-color: #4b5f79;
+
+    --btn-white-text-color: #274061;
+    --btn-white-bg-color: #ffffff;
+    --btn-white-border-color: #c9d7ea;
+    --btn-white-shadow-color: rgba(67, 101, 144, 0.18);
+    --btn-white-hover-text-color: #ffffff;
+    --btn-white-hover-bg-color: #4f7cff;
+    --btn-white-hover-border-color: #4f7cff;
+    --btn-white-hover-shadow-color: rgba(79, 124, 255, 0.3);
+
+    --btn-red-text-color: #ffffff;
+    --btn-red-bg-color: #ff7b49;
+    --btn-red-border-color: #ff7b49;
+    --btn-red-shadow-color: rgba(255, 123, 73, 0.24);
+    --btn-red-hover-text-color: #d85c2e;
+    --btn-red-hover-bg-color: #fff2ec;
+    --btn-red-hover-border-color: #ffb08f;
+    --btn-red-hover-shadow-color: rgba(255, 123, 73, 0.2);
+
+    --btn-big-text-color: #ffffff;
+    --btn-big-bg-color: #ff7b49;
+    --btn-big-border-color: #ff7b49;
+    --btn-big-shadow-color: rgba(255, 123, 73, 0.24);
+    --btn-big-hover-text-color: #d85c2e;
+    --btn-big-hover-bg-color: #fff2ec;
+    --btn-big-hover-border-color: #ffb08f;
+    --btn-big-hover-shadow-color: rgba(255, 123, 73, 0.2);
+
+    --btn-cart-text-color: #ffffff;
+    --btn-cart-bg-color: #ff7b49;
+    --btn-cart-border-color: #ff7b49;
+    --btn-cart-shadow-color: rgba(255, 123, 73, 0.24);
+    --btn-cart-hover-text-color: #d85c2e;
+    --btn-cart-hover-bg-color: #fff2ec;
+    --btn-cart-hover-border-color: #ffb08f;
+    --btn-cart-hover-shadow-color: rgba(255, 123, 73, 0.2);
+
+    --btn-checkout-text-color: #ffffff;
+    --btn-checkout-bg-color: #ff7b49;
+    --btn-checkout-border-color: #ff7b49;
+    --btn-checkout-shadow-color: rgba(255, 123, 73, 0.24);
+    --btn-checkout-hover-text-color: #ffffff;
+    --btn-checkout-hover-bg-color: #e66735;
+    --btn-checkout-hover-border-color: #e66735;
+    --btn-checkout-hover-shadow-color: rgba(230, 103, 53, 0.3);
+
+    --btn-track-text-color: #ffffff;
+    --btn-track-bg-color: linear-gradient(135deg, #ff9360, #ff5d86);
+    --btn-track-border-color: #ff7d57;
+    --btn-track-shadow-color: rgba(255, 122, 86, 0.26);
+    --btn-track-hover-text-color: #ffffff;
+    --btn-track-hover-bg-color: linear-gradient(135deg, #ffa374, #ff6f97);
+    --btn-track-hover-border-color: #ff926f;
+    --btn-track-hover-shadow-color: rgba(255, 122, 86, 0.32);
+    --btn-track-pulse-color: rgba(255, 122, 86, 0.52);
+
+    --btn-submit-text-color: #ffffff;
+    --btn-submit-bg-color: linear-gradient(45deg, #5f88ff, #4f7cff);
+    --btn-submit-border-color: #4f7cff;
+    --btn-submit-shadow-color: rgba(79, 124, 255, 0.24);
+    --btn-submit-hover-text-color: #ffffff;
+    --btn-submit-hover-bg-color: linear-gradient(45deg, #6f95ff, #5b87ff);
+    --btn-submit-hover-border-color: #5b87ff;
+    --btn-submit-hover-shadow-color: rgba(79, 124, 255, 0.4);
+}
+
+[data-theme="light"] body,
+[data-theme="light"] .home,
+[data-theme="light"] .home2,
+[data-theme="light"] .cart-page {
+    background-color: #eef3f8;
+}
+
+[data-theme="light"] * {
+    color: var(--color-text-primary);
+}
+
+[data-theme="light"] span {
+    text-decoration-color: #ff9461;
+}
+
+[data-theme="light"] header {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(25, 53, 94, 0.12);
+    box-shadow: 0 8px 20px rgba(16, 41, 75, 0.09);
+}
+
+[data-theme="light"] .header > .nav ul a {
+    background: #f7faff;
+    border-color: rgba(25, 53, 94, 0.14);
+    box-shadow: 0 3px 10px rgba(24, 52, 89, 0.08);
+}
+
+[data-theme="light"] .header > .nav ul a:hover {
+    background: #ffffff;
+    border-color: rgba(255, 125, 84, 0.45);
+    box-shadow: 0 8px 18px rgba(255, 125, 84, 0.2);
+}
+
+[data-theme="light"] .nav ul li,
+[data-theme="light"] .header .nav ul li,
+[data-theme="light"] .header .nav ul a:last-child li {
+    color: #21344c;
+}
+
+[data-theme="light"] .header .cart-icon,
+[data-theme="light"] .header .cart-icon2 {
+    background: #f7faff;
+    border-color: rgba(25, 53, 94, 0.14);
+    box-shadow: 0 4px 12px rgba(24, 52, 89, 0.1);
+}
+
+[data-theme="light"] .logout-btn {
+    background: linear-gradient(135deg, #ff7b49, #ff4f81);
+    color: #ffffff;
+}
+
+[data-theme="light"] .auth-card {
+    background: linear-gradient(145deg, #ffffff, #f5f9ff);
+    border-color: rgba(31, 63, 108, 0.16);
+    box-shadow: 0 16px 34px rgba(21, 47, 84, 0.13);
+}
+
+[data-theme="light"] .auth-card h2,
+[data-theme="light"] .username {
+    color: #1f2f45;
+}
+
+[data-theme="light"] .subtitle {
+    color: #64758a;
+}
+
+[data-theme="light"] .close-btn {
+    color: #7d8da3;
+}
+
+[data-theme="light"] .close-btn:hover {
+    color: #ff6d3d;
+}
+
+[data-theme="light"] .items-section {
+    background: #f2f6fc;
+    box-shadow: 0 12px 28px rgba(18, 44, 79, 0.08);
+}
+
+[data-theme="light"] .main_slide h1,
+[data-theme="light"] .main_slide div:nth-child(1) p {
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.48);
+}
+
+[data-theme="light"] .main_slide h1 span,
+[data-theme="light"] .main_slide4 .chef-feed h2 span,
+[data-theme="light"] .items-section h1 span,
+[data-theme="light"] .testimonial h1 span {
+    color: #ff8450;
+}
+
+[data-theme="light"] .item,
+[data-theme="light"] .main_slide3 .fav-food .item,
+[data-theme="light"] .f-card,
+[data-theme="light"] .special-day .row .thing,
+[data-theme="light"] .best-food .br-cards .c-one,
+[data-theme="light"] .feedback-form {
+    background: #ffffff;
+    border: 1px solid rgba(31, 63, 108, 0.12);
+    box-shadow: 0 10px 22px rgba(18, 44, 79, 0.1);
+}
+
+[data-theme="light"] .item-cards .card,
+[data-theme="light"] .shopping,
+[data-theme="light"] .checkout-section,
+[data-theme="light"] .bill-box,
+[data-theme="light"] .top-bar,
+[data-theme="light"] .product-cart,
+[data-theme="light"] .tracking-order-details,
+[data-theme="light"] .tracking-timeline {
+    background: #f8fbff;
+    border: 1px solid rgba(31, 63, 108, 0.12);
+    box-shadow: 0 10px 24px rgba(17, 42, 74, 0.1);
+}
+
+[data-theme="light"] .item::before,
+[data-theme="light"] .item::after {
+    opacity: 0.22;
+}
+
+[data-theme="light"] .item .para,
+[data-theme="light"] .item p,
+[data-theme="light"] .main_slide4 .chef-feed p,
+[data-theme="light"] .main_slide4 .chef-feed ul li,
+[data-theme="light"] .f-card p,
+[data-theme="light"] .testimonial .details .name p,
+[data-theme="light"] .special-day .row .thing ul li,
+[data-theme="light"] .special-day .row .thing p,
+[data-theme="light"] .item-cards .card p,
+[data-theme="light"] .shopping .type,
+[data-theme="light"] .tracking-step-note,
+[data-theme="light"] .tracking-step-mode {
+    color: #63758b;
+}
+
+[data-theme="light"] .main_slide3,
+[data-theme="light"] .best-food,
+[data-theme="light"] .letter {
+    background-color: #f3f7fc;
+}
+
+[data-theme="light"] .main_slide4,
+[data-theme="light"] .testimonial {
+    background-color: #edf3fb;
+}
+
+[data-theme="light"] .special-day,
+[data-theme="light"] .main_slide3 .dsgn {
+    background-color: #f5f8fd;
+}
+
+[data-theme="light"] .special-day .row .thing h5,
+[data-theme="light"] .home_price p,
+[data-theme="light"] .main_slide3 .fav-price,
+[data-theme="light"] .special-day > p {
+    color: #e46a38;
+}
+
+[data-theme="light"] .special-day > p {
+    background-color: #fff4ec;
+    border: 1px solid #ffd8c2;
+}
+
+[data-theme="light"] .feedback-form textarea,
+[data-theme="light"] .feedback-form select,
+[data-theme="light"] .letter-input div,
+[data-theme="light"] .letter-input input,
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+    background: #fbfdff;
+    color: #1f2f45;
+    border-color: rgba(31, 63, 108, 0.18);
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus,
+[data-theme="light"] textarea:focus {
+    border-color: #6a8dff;
+    box-shadow: 0 0 0 3px rgba(106, 141, 255, 0.16);
+    background: #ffffff;
+    outline: none;
+}
+
+[data-theme="light"] .feedback-form textarea::placeholder {
+    color: #8596ab;
+}
+
+[data-theme="light"] .footer {
+    background: #e4ecf6;
+    box-shadow: 0 -4px 14px rgba(21, 48, 85, 0.1);
+}
+
+[data-theme="light"] .footer-content h4,
+[data-theme="light"] .footer-content ul li,
+[data-theme="light"] .footer-content ul p {
+    color: #384d67;
+}
+
+[data-theme="light"] .hyderix {
+    background: #d9e4f1;
+}
+
+[data-theme="light"] .hyderix .hyderix-2 p,
+[data-theme="light"] .hyderix-1 p {
+    color: #4d607a;
+}
+
+[data-theme="light"] .hyderix-1 p span {
+    color: #4f7cff;
+}
+
+[data-theme="light"] .top-bar {
+    border-bottom: 1px solid rgba(31, 63, 108, 0.14);
+}
+
+[data-theme="light"] .scroll-btn,
+[data-theme="light"] .main_slide3 .popular-slider-controls .slide-btn,
+[data-theme="light"] .slide-btn {
+    background: linear-gradient(145deg, #ff8f5a, #ff6f44);
+    color: #ffffff;
+}
+
+[data-theme="light"] .menu-bar li a {
+    background-color: #f8fbff;
+    border: 1px solid rgba(31, 63, 108, 0.14);
+    color: #1f3249;
+}
+
+[data-theme="light"] .menu-bar li a:hover {
+    background-color: #ffffff;
+    border-color: rgba(255, 125, 84, 0.45);
+    box-shadow: 0 4px 12px rgba(255, 125, 84, 0.2);
+}
+
+[data-theme="light"] .menu-bar a.active {
+    background: linear-gradient(145deg, #ff8b57, #ff6a44);
+    color: #ffffff;
+}
+
+[data-theme="light"] .item-cards .card .post,
+[data-theme="light"] .tracking-order-item,
+[data-theme="light"] .tracking-step,
+[data-theme="light"] .tracking-order-chip {
+    border-color: rgba(31, 63, 108, 0.14);
+}
+
+[data-theme="light"] .menu-section h2,
+[data-theme="light"] .shopping h2,
+[data-theme="light"] .checkout-section h2,
+[data-theme="light"] .bill-box .row,
+[data-theme="light"] .price p,
+[data-theme="light"] .shopping ul li,
+[data-theme="light"] .big-discount {
+    color: #1f2f45;
+}
+
+[data-theme="light"] .free-delivery-message {
+    background: #eaf4ff;
+    color: #285f97;
+}
+
+[data-theme="light"] .discount-message.success {
+    background: #fff4ec;
+    border-color: rgba(228, 106, 56, 0.36);
+    color: #cf6336;
+}
+
+[data-theme="light"] .discount-message.promo {
+    background: #ebfff4;
+    border-color: rgba(34, 165, 99, 0.32);
+    color: #238857;
+}
+
+[data-theme="light"] .popup-content {
+    background: #fbfdff;
+    border-color: rgba(31, 63, 108, 0.14);
+    box-shadow: 0 12px 30px rgba(21, 48, 84, 0.14);
+}
+
+[data-theme="light"] #orderStatus {
+    color: #314864;
+}
+
+[data-theme="light"] .status-pill {
+    background: #edf3ff;
+    color: #35527a;
+}

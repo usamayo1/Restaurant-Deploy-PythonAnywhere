@@ -1,0 +1,127 @@
+:root,
+[data-theme="default"] {
+    --color-bg-page: rgb(31, 30, 29);
+    --color-surface-900: rgba(8, 8, 8, 0.92);
+    --color-surface-800: rgb(49, 49, 49);
+    --color-surface-700: rgb(57, 55, 55);
+    --color-text-primary: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.78);
+    --color-text-soft: whitesmoke;
+    --color-border-soft: rgba(255, 178, 138, 0.18);
+    --color-accent: rgb(253, 77, 8);
+    --color-accent-strong: rgb(250, 120, 69);
+    --color-accent-secondary: #e63946;
+    --color-shadow: rgba(0, 0, 0, 0.45);
+
+    --header-bg-color: var(--color-surface-900);
+    --header-btn-color: var(--color-text-primary);
+    --header-btn-bg-color: var(--color-surface-700);
+    --header-btn-shadow-color: rgb(252, 193, 169);
+    --header-btn-hover-bg-color: var(--color-accent-strong);
+
+    --heading-span-color: var(--color-accent);
+    --heading-color: var(--color-text-primary);
+    --sub-heading-color: var(--color-text-soft);
+    --best-food-sub-heading: var(--color-accent-strong);
+    --footer-li-color: antiquewhite;
+    --text-color: var(--color-text-muted);
+    --spacing-unit: 1rem;
+
+    --items-section-bg-color: rgb(26, 25, 25);
+    --item-heading-color-one: #ffffff;
+    --item-heading-color-two: #d2d29a;
+    --deals-section-bg-color: rgb(26, 25, 25);
+    --footer-section-bg-color: rgb(12, 12, 12);
+    --hyderix-section-bg-color: rgb(11, 11, 11);
+
+    --topbar-bg-color: var(--color-surface-800);
+    --topbar-btn-color: var(--color-text-primary);
+    --topbar-btn-bg-color: #000000;
+    --topbar-btn-active-bg-color: var(--color-accent-secondary);
+    --home-bg-color: var(--color-bg-page);
+    --section-heading-color: var(--color-text-primary);
+    --card-shadow-color: #000000;
+    --cart-popup-text-color: #000000;
+    --cart-popup-img-bg-color: rgba(253, 77, 8, 0.84);
+    --cart-section-bg-color: #ffffff;
+    --cart-popup-price-color: rgba(253, 77, 8, 0.84);
+    --close-sign-color: #ffffff;
+
+    --cart-page-bg-color: var(--color-surface-800);
+    --section-shadow-color: #000000;
+    --line-color: #ff7a00;
+    --border-color: grey;
+    --type-color: rgba(255, 255, 255, 0.615);
+    --input-bg-color: #3a3a3a;
+    --input-focus-border-color: #ff7a00;
+    --input-focus-bg-color: #444444;
+    --bill-box-bg-color: #3a3a3a;
+    --total-color: #ff7a00;
+    --qty-bg-color: rgba(253, 77, 8, 0.84);
+    --qty-sign-color: #ffffff;
+    --qty-active-bg-color: rgba(163, 50, 5, 0.219);
+
+    --btn-white-text-color: rgb(253, 77, 8);
+    --btn-white-bg-color: #ffffff;
+    --btn-white-border-color: rgb(253, 77, 8);
+    --btn-white-shadow-color: rgb(250, 120, 69);
+    --btn-white-hover-text-color: #ffffff;
+    --btn-white-hover-bg-color: rgb(253, 77, 8);
+    --btn-white-hover-border-color: rgb(253, 77, 8);
+    --btn-white-hover-shadow-color: rgb(250, 120, 69);
+
+    --btn-red-text-color: #f0f8ff;
+    --btn-red-bg-color: rgb(253, 77, 8);
+    --btn-red-border-color: rgb(253, 77, 8);
+    --btn-red-shadow-color: rgb(250, 120, 69);
+    --btn-red-hover-text-color: rgb(253, 77, 8);
+    --btn-red-hover-bg-color: #ffffff;
+    --btn-red-hover-border-color: rgb(253, 77, 8);
+    --btn-red-hover-shadow-color: rgb(250, 120, 69);
+
+    --btn-big-text-color: #f0f8ff;
+    --btn-big-bg-color: rgba(253, 77, 8, 0.84);
+    --btn-big-border-color: rgb(253, 77, 8);
+    --btn-big-shadow-color: rgb(250, 120, 69);
+    --btn-big-hover-text-color: rgb(253, 77, 8);
+    --btn-big-hover-bg-color: #ffffff;
+    --btn-big-hover-border-color: rgb(253, 77, 8);
+    --btn-big-hover-shadow-color: rgb(250, 120, 69);
+
+    --btn-cart-text-color: #f0f8ff;
+    --btn-cart-bg-color: rgba(253, 77, 8, 0.84);
+    --btn-cart-border-color: rgb(253, 77, 8);
+    --btn-cart-shadow-color: rgb(250, 120, 69);
+    --btn-cart-hover-text-color: rgb(253, 77, 8);
+    --btn-cart-hover-bg-color: #ffffff;
+    --btn-cart-hover-border-color: rgb(253, 77, 8);
+    --btn-cart-hover-shadow-color: rgb(250, 120, 69);
+
+    --btn-checkout-text-color: #ffffff;
+    --btn-checkout-bg-color: #ff7a00;
+    --btn-checkout-border-color: #ff7a00;
+    --btn-checkout-shadow-color: rgba(250, 120, 69, 0.35);
+    --btn-checkout-hover-text-color: #ffffff;
+    --btn-checkout-hover-bg-color: #e56d00;
+    --btn-checkout-hover-border-color: #e56d00;
+    --btn-checkout-hover-shadow-color: rgba(229, 109, 0, 0.45);
+
+    --btn-track-text-color: #ffffff;
+    --btn-track-bg-color: linear-gradient(135deg, #ff8a00, #ff3c00);
+    --btn-track-border-color: #ff7a00;
+    --btn-track-shadow-color: rgba(0, 0, 0, 0.35);
+    --btn-track-hover-text-color: #ffffff;
+    --btn-track-hover-bg-color: linear-gradient(135deg, #ff9a1f, #ff4c1f);
+    --btn-track-hover-border-color: #ff7a00;
+    --btn-track-hover-shadow-color: rgba(0, 0, 0, 0.45);
+    --btn-track-pulse-color: rgba(255, 120, 0, 0.6);
+
+    --btn-submit-text-color: #ffffff;
+    --btn-submit-bg-color: linear-gradient(45deg, #ff7a00, #ff3c00);
+    --btn-submit-border-color: #ff7a00;
+    --btn-submit-shadow-color: rgba(255, 122, 0, 0.2);
+    --btn-submit-hover-text-color: #ffffff;
+    --btn-submit-hover-bg-color: linear-gradient(45deg, #ff8a1f, #ff4c1f);
+    --btn-submit-hover-border-color: #ff7a00;
+    --btn-submit-hover-shadow-color: rgba(255, 122, 0, 0.4);
+}

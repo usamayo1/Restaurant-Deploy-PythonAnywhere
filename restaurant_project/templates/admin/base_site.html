@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}Little Lemon Admin{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="admin-branding">
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">Little Lemon Control Room</a>
+    </h1>
+    <p class="admin-subtitle">
+        Manage menu content, homepage sections, offers, orders, and tracking automation from one place.
+    </p>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+{% if request.user.is_staff %}
+<div class="admin-extra-nav" data-unread-url="{% url 'staff_live_chat_unread_count' %}">
+    <a href="{% url 'live_chat_dashboard' %}" class="admin-live-chat-link">
+        Live Chat Console
+        <span
+            id="admin-live-chat-badge"
+            class="admin-live-chat-badge{% if not admin_live_chat_unread_threads %} is-hidden{% endif %}">
+            {{ admin_live_chat_unread_threads }}
+        </span>
+    </a>
+</div>
+<script src="{% static 'admin/live_chat_nav_badge.js' %}"></script>
+{% endif %}
+{% endblock %}

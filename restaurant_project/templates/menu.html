@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block Menu %}
+
+
+        
+<div class="cart-section">
+    <div class="cart-box">
+        <button class="close-cart">×</button>
+
+        <div class="top-div">
+            <div>
+                <img src="" alt="">
+            </div>
+        </div>
+
+        <div class="cart-content">
+            <h4></h4>
+
+            <!-- Variants will be inserted here dynamically -->
+            <div class="variants-wrapper"></div>
+
+            <div class="qty">
+                <div class="decrease">
+                    <p>-</p>
+                </div>
+                <p class="count">1</p>
+                <div class="increase">
+                    <p>+</p>
+                </div>
+            </div>
+
+            <button class="cart-btn1">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+    <div class="home2">
+        <div class="top-bar">
+            <div class="menu-wrapper">
+                <button class="scroll-btn left">‹</button>
+                <div class="menu-bar">
+                    <ul>
+                        {% for c in categories %}
+                        <li><a href="#{{ c.name|slugify }}">{{c.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button class="scroll-btn right">›</button>
+            </div>
+        </div>
+
+{% for c in categories %}
+<div class="menu-section" id="{{ c.name|slugify }}">
+    
+    <h2>{{ c.name }}</h2>
+
+    <div class="item-cards">
+        {% for item in c.items.all %}
+        <div class="card">
+            
+            <div class="post">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                {% else %}
+                    <img src="{% static './Images/f1.png' %}" alt="">
+                {% endif %}
+            </div>
+
+            <h3 class="item-name">{{ item.name }}</h3>
+
+            <p class="item-description">{{ item.description }}</p>
+
+            <!-- Show Regular price on card -->
+            {% with first_variant=item.variants.all|first %}
+                {% if first_variant %}
+                    <p class="item-price">
+                        <span class="price-currency">Rs.</span>
+                        <span class="price-value">{{ first_variant.price }}</span>
+                    </p>
+                {% endif %}
+            {% endwith %}
+
+            <button 
+                class="cart-btn1 open-cart"
+                data-item-name="{{ item.name }}"
+                data-item-image="{% if item.image %}{{ item.image.url }}{% endif %}"
+                data-variants='[
+                    {% for v in item.variants.all %}
+                    {
+                        "id": "{{ v.id }}",
+                        "size": "{{ v.size|escapejs }}",
+                        "price": "{{ v.price }}"
+                    }{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ]'>
+                Add to Cart
+            </button>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+    </div>
+
+
+
+{% endblock Menu %}

@@ -1,0 +1,42 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/live_chat_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div
+    id="live-chat-admin-dashboard"
+    class="chat-admin-layout"
+    data-threads-url="{% url 'staff_live_chat_threads' %}"
+    data-messages-url-template="{% url 'staff_live_chat_messages' 0 %}"
+    data-send-url-template="{% url 'staff_live_chat_send' 0 %}">
+    <aside class="chat-thread-sidebar">
+        <div class="chat-sidebar-head">
+            <h2>Live Chat Console</h2>
+            <input id="chat-thread-search" type="text" placeholder="Search by name or email" autocomplete="off">
+        </div>
+        <div id="chat-thread-list" class="chat-thread-list"></div>
+    </aside>
+
+    <section class="chat-thread-main">
+        <header id="chat-thread-header" class="chat-thread-header">
+            <h3>Select a conversation</h3>
+            <p>Choose a thread to start replying.</p>
+        </header>
+        <div id="chat-admin-messages" class="chat-admin-messages"></div>
+        <form id="chat-admin-form" class="chat-admin-form">
+            {% csrf_token %}
+            <input id="chat-admin-input" type="text" maxlength="1200" placeholder="Write reply..." autocomplete="off" />
+            <button type="submit">Send Reply</button>
+        </form>
+    </section>
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+<script src="{% static 'admin/live_chat_dashboard.js' %}"></script>
+{% endblock %}

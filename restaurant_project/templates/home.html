@@ -1,0 +1,416 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block Home %}
+{% load socialaccount %}
+
+
+  
+
+{% if hero and hero.image1 and hero.image2 %}
+<style>
+.main_slide::before {
+    background-image: url('{{ hero.image1.url }}');
+    animation: fadeZoom1 14s infinite;
+}
+
+.main_slide::after {
+    background-image: url('{{ hero.image2.url }}');
+    animation: fadeZoom2 14s infinite;
+}
+</style>
+{% endif %}
+{% comment %} /// For the Loginn google card close {% endcomment %}
+
+<script>
+function closeAuthCard() {
+    document.getElementById('authCard').style.display = 'none';
+}
+</script>
+
+{% comment %} //// {% endcomment %}
+ 
+<div class="auth-wrapper">
+    <div class="auth-card" id="authCard">
+
+        <!-- Close Button -->
+        <button class="close-btn" onclick="closeAuthCard()">×</button>
+
+        {% if user.is_authenticated %}
+        
+            <h2>Welcome 👋</h2>
+            <div class='auth-profile'>
+
+                <div class="auth-image">
+                    {% if user.userprofile.profile_image %}
+                        <img src="{{ user.userprofile.profile_image }}" alt="">
+                    {% else %}
+                        <img src="{% static './Images/client2.jpg' %}" alt="">
+                    {% endif %}
+                </div>
+                <p class="username">
+                    {{ user.first_name|default:user.username }}
+                </p>
+            </div>
+        {% else %}
+            <h2>Welcome 🍔</h2>
+            <p class="subtitle">
+                Sign in to order faster & track your food
+            </p>
+
+            <a href="{% provider_login_url 'google' %}" class="google-btn">
+                Continue with Google
+            </a>
+        {% endif %}
+
+    </div>
+</div>
+{% comment %} //// {% endcomment %}
+
+    <div class="home" id="home">
+        <div class="main_slide" id="first_section">
+
+            <div class="content-1">
+                <h1>Enjoy <span>Delicious Food</span> in your Healthy Life.</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Asperiores autem officiis, libero ullam
+                    dignissimos modi repellendus neque dicta tenetur aut!
+                    Nam, quaerat? Eligendi, vel dolor mollitia
+                    molestias maiores voluptatem quam?
+                </p>
+                <button class="red_btn"><img src=" {% static './Images/dish.png' %}" alt="">Visit Now <i
+                        class="fa-solid fa-arrow-right-long"></i></button>
+
+            </div>
+
+        </div>
+        <div class="items-section" id="menu_section">
+
+            <h1>What Would you like to <span>Order!</span></h1>
+            <div class="items-wrapper">
+                <button class="slide-btn go-left">‹</button>
+                <div class="food-items">
+
+                    {% for c in category %}
+                    <div class="item">
+                        <div>
+                            <img src="/media/{{c.image}}" alt="">
+                        </div>
+                        <h3 class="catogory">{{c.name}}</h3>
+                        <p class="para">{{c.description}}</p>
+                            <button class="white_btn"><a href="{% url 'Menu' %}#{{ c.name|slugify }}">See Menu</a></button>
+                        </div>
+                        {% endfor %}
+                </div>
+                <button class="slide-btn go-right">›</button>
+            </div>
+        </div>
+
+{% if deal %}
+<div class="special-day" id="day_section">
+
+    <h1>Deal of the <span>Day</span></h1>
+
+    <div class="deal-section">
+        <div class="deal-cards">
+
+            {# ---------- FIRST ROW ---------- #}
+            <div class="first-row row">
+                {% for section in deal.sections.all|dictsort:"order"|slice:":2" %}
+                <div class="thing">
+                    <h5>{{ section.heading }}</h5>
+                    <ul>
+                        {% for item in section.items.all %}
+                        <li>{{ item.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+            {# ---------- SECOND ROW ---------- #}
+            <div class="second-row row">
+                {% for section in deal.sections.all|dictsort:"order"|slice:"2:4" %}
+                <div class="thing">
+                    <h5>{{ section.heading }}</h5>
+                    <ul>
+                        {% for item in section.items.all %}
+                        <li>{{ item.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="day-image">
+            {% if deal.image %}
+                <img src="{{ deal.image.url }}" alt="">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="home_price">
+        <h6>Price:</h6>
+        <p>{{ deal.price }}</p>
+    </div>
+
+    <button type="button" class="bigger_cart add-daily-deal" data-id="{{ deal.id }}">
+        Add to Cart
+    </button>
+
+</div>
+{% endif %}
+
+
+{% if why %}
+<div class="main_slide2" id="why_section">
+    
+    <div class="foodimg">
+        {% if why.main_image %}
+        <img src="{{ why.main_image.url }}">
+        {% endif %}
+    </div>
+
+    <div class="question">
+        <div>
+            <h2>{{ why.title }}</h2>
+        </div>
+
+        <div>
+            {% for item in why.features.all %}
+            <div class="q-ans">
+                <div>
+                    <img src="{{ item.image.url }}" alt="">
+                </div>
+                <div>
+                    <h4>{{ item.heading }}</h4>
+                    <p>{{ item.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+
+
+        <div class="main_slide3" id="deals_section">
+            <div class="fav-head">
+                <h3>Our Popular Food <span>Deals</span></h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quam, fuga consequuntur, a est ullam
+                    saepe rem quod, debitis in iusto commodi expedita enim ut sunt ea perferendis odio. Porro!</p>
+            </div>
+            {% if popular %}
+            <div class="popular-slider-shell">
+            <div class="fav-food">
+
+                {% for item in popular.deals.all %}
+                <div class="item">
+                    <div>
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                    </div>
+
+                    <h3>{{ item.title }}</h3>
+
+                    <p>{{ item.description }}</p>
+
+                    <p class="fav-price">{{ item.price }}</p>
+
+                    <button type="button" class="cart-btn1 add-popular" data-id="{{ item.id }}">
+                        Add to Cart
+                    </button>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="popular-slider-controls">
+                <button type="button" class="slide-btn popular-left" aria-label="Previous popular deals">‹</button>
+                <button type="button" class="slide-btn popular-right" aria-label="Next popular deals">›</button>
+            </div>
+            </div>
+            {% endif %}
+
+            <button class="red_btn"><a href="{% url 'Menu' %}">Explore Menu</a></button>
+
+            <div class="dsgn"></div>
+
+        </div>
+
+        <div class="main_slide4" id="chef_section">
+            <div class="chef-feed">
+                <h2>Made With <span>Passion & Skill</span></h2>
+                <p>With over 15 years of restaurant experience, our head chef brings rich culinary artistry to every
+                    meal. By combining premium ingredients with unique flavors, he ensures every bite is a delightful
+                    experience.</p>
+                <ul>
+                    <li>✔ 15+ Years of Experience</li>
+                    <li>✔ Master of Continental & Fast Food</li>
+                    <li>✔ Passion for Fresh, Hand-Prepared Meals</li>
+                    <li>✔ Award-Winning Recipes</li>
+                    <li>✔ Quality & Hygiene Focused</li>
+                </ul>
+                <div class="chef-detail">
+                    <div>
+                        <img src=" {% static './Images/logo_footer.png' %}" alt="">
+                    </div>
+                    <div>
+                        <h6>Fateh Sher</h6>
+                        <p>Head chef</p>
+                    </div>
+                </div>
+                <div class="chef-vic">
+                    <div>
+                        <i class="fa-solid fa-hand-peace"></i>
+                        <h4>68</h4>
+                        <p>Wins competition arround the world.</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-trophy"></i>
+                        <h4>14</h4>
+                        <p>Awards wins in Pakistan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chef">
+                <img src=" {% static './Images/head_chef.jpg' %}" alt="">
+            </div>
+        </div>
+
+{% if our_special %}
+<div class="best-food" id="best-food_section">
+
+    <!-- STATIC HEADING -->
+    <h1>Our <span>Special</span></h1>
+
+    <div class="br-image">
+        {% if our_special.main_image %}
+        <img src="{{ our_special.main_image.url }}" alt="Our Special">
+        {% endif %}
+    </div>
+
+    <p>{{ our_special.description }}</p>
+
+    <div class="br-cards">
+        {% for card in our_special.cards.all %}
+        <div class="c-one">
+            <h4>{{ card.title }}</h4>
+            <p>{{ card.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="home_price">
+        <h6>Price:</h6>
+        <p>{{ our_special.price }}</p>
+    </div>
+
+    <button type="button" class="bigger_cart add-special" data-id="{{ our_special.id }}">
+        Add to Cart
+    </button>
+
+</div>
+{% endif %}
+
+        <div class="testimonial" id="review_section">
+            <h4>Testimonial</h4>
+            <h1><span>Customer</span> FeedBack</h1>
+
+            <div class="t-wraper">
+                <button class="slide-btn lefty">‹</button>
+
+                    <div class="feedbacks">
+
+                        {% if feedbacks %}
+                            {% for review in feedbacks %}
+                                <div class="f-card">
+                                    <div class="details">
+                                        <div class="f-image">
+                                            {% if review.user.userprofile.profile_image %}
+                                                <img src="{{ review.user.userprofile.profile_image }}" alt="">
+                                            {% else %}
+                                                <img src="{% static './Images/client2.jpg' %}" alt="">
+                                            {% endif %}
+                                        </div>
+                                        <div class="name">
+                                            <h5>{{ review.user.username }}</h5>
+                                            <p>Customer</p>
+                                            <div class="stars"> {% for i in "12345" %} {% if forloop.counter <= review.rating %} <i class="fa-solid fa-star"></i> {% else %} <i class="fa-regular fa-star"></i> {% endif %} {% endfor %} </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <p>{{ review.message }}</p>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="f-card">
+                                <div class="details">
+                                    <div class="f-image">
+                                        <img src="{% static './Images/client2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="name">
+                                        <h5>No Reviews Yet</h5>
+                                        <p>Customer</p>
+                                    </div>
+                                </div>
+                                <p>Be the first one to leave feedback.</p>
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                <button class="slide-btn righty">›</button>
+            </div>
+
+         <div class="feedback-wrapper">
+             <h2>Share Your Experience</h2> 
+             {% if user.is_authenticated %} 
+             <form method="POST" class="feedback-form"> 
+                {% csrf_token %} 
+                <div class="form-group"> 
+                    <label for="{{ form.rating.id_for_label }}">How was your experience?</label> 
+                    <div class="rating-stars"> 
+                        {{ form.rating }} 
+
+                    </div> 
+                </div> 
+                <div class="form-group"> 
+                        <label for="{{ form.message.id_for_label }}">Tell us about your visit</label> 
+                        {{ form.message }} 
+                    </div> 
+                    <button type="submit" class="submit-btn"> Submit Feedback </button> 
+                </form> 
+                {% else %} 
+                <p class="login-msg"> 
+                    Please 
+                    <a href="{% url 'account_login' %}">
+                        login</a> to leave feedback. </p> 
+                        {% endif %} 
+        </div> 
+
+        </div>
+        
+
+                
+
+        {% comment %} <div class="letter">
+            <div class="letter-head">
+                <h2>Subscribe <span>for Discounts</span></h2>
+            </div>
+            <div class="letter-input">
+                <div>
+                    <input type="email" name="" id="" placeholder="Example.com">
+                </div>
+                <button class="red_btn">Subscribe</button>
+            </div>
+        </div> {% endcomment %}
+    </div>
+
+ 
+
+{% endblock Home %}

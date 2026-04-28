@@ -1,0 +1,126 @@
+[data-theme="olive"] {
+    --color-bg-page: #1f241f;
+    --color-surface-900: rgba(16, 25, 16, 0.94);
+    --color-surface-800: #2c352c;
+    --color-surface-700: #374637;
+    --color-text-primary: #f4f7ee;
+    --color-text-muted: rgba(235, 241, 223, 0.82);
+    --color-text-soft: #e5efd8;
+    --color-border-soft: rgba(178, 210, 143, 0.24);
+    --color-accent: #c97a1d;
+    --color-accent-strong: #8faa3e;
+    --color-accent-secondary: #5f8a2c;
+    --color-shadow: rgba(9, 16, 7, 0.42);
+
+    --header-bg-color: var(--color-surface-900);
+    --header-btn-color: var(--color-text-primary);
+    --header-btn-bg-color: var(--color-surface-700);
+    --header-btn-shadow-color: rgba(166, 194, 131, 0.34);
+    --header-btn-hover-bg-color: #6f8e33;
+
+    --heading-span-color: var(--color-accent);
+    --heading-color: var(--color-text-primary);
+    --sub-heading-color: var(--color-text-soft);
+    --best-food-sub-heading: #b7cd74;
+    --footer-li-color: #d9e8c6;
+    --text-color: var(--color-text-muted);
+    --spacing-unit: 1rem;
+
+    --items-section-bg-color: #1c231c;
+    --item-heading-color-one: #f6f9ef;
+    --item-heading-color-two: #dce8a6;
+    --deals-section-bg-color: #1d241d;
+    --footer-section-bg-color: #131a13;
+    --hyderix-section-bg-color: #111711;
+
+    --topbar-bg-color: var(--color-surface-800);
+    --topbar-btn-color: var(--color-text-primary);
+    --topbar-btn-bg-color: #182118;
+    --topbar-btn-active-bg-color: #6f8e33;
+    --home-bg-color: var(--color-bg-page);
+    --section-heading-color: var(--color-text-primary);
+    --card-shadow-color: #111a11;
+    --cart-popup-text-color: #172117;
+    --cart-popup-img-bg-color: rgba(143, 170, 62, 0.9);
+    --cart-section-bg-color: #f4f8ed;
+    --cart-popup-price-color: #6f8e33;
+    --close-sign-color: #f4f7ee;
+
+    --cart-page-bg-color: var(--color-surface-800);
+    --section-shadow-color: #0f160f;
+    --line-color: #b08a2a;
+    --border-color: rgba(168, 188, 141, 0.55);
+    --type-color: rgba(225, 236, 206, 0.7);
+    --input-bg-color: #2c362c;
+    --input-focus-border-color: #9db542;
+    --input-focus-bg-color: #334033;
+    --bill-box-bg-color: #2b352b;
+    --total-color: #d2a243;
+    --qty-bg-color: rgba(143, 170, 62, 0.9);
+    --qty-sign-color: #f8fff3;
+    --qty-active-bg-color: rgba(112, 140, 45, 0.35);
+
+    --btn-white-text-color: #8faa3e;
+    --btn-white-bg-color: #f6f9f0;
+    --btn-white-border-color: #8faa3e;
+    --btn-white-shadow-color: rgba(166, 194, 131, 0.5);
+    --btn-white-hover-text-color: #f6f9f0;
+    --btn-white-hover-bg-color: #7f9d38;
+    --btn-white-hover-border-color: #7f9d38;
+    --btn-white-hover-shadow-color: rgba(112, 140, 45, 0.58);
+
+    --btn-red-text-color: #f6f9f0;
+    --btn-red-bg-color: #8faa3e;
+    --btn-red-border-color: #8faa3e;
+    --btn-red-shadow-color: rgba(166, 194, 131, 0.5);
+    --btn-red-hover-text-color: #7f9d38;
+    --btn-red-hover-bg-color: #f6f9f0;
+    --btn-red-hover-border-color: #8faa3e;
+    --btn-red-hover-shadow-color: rgba(166, 194, 131, 0.5);
+
+    --btn-big-text-color: #f6f9f0;
+    --btn-big-bg-color: rgba(143, 170, 62, 0.9);
+    --btn-big-border-color: #8faa3e;
+    --btn-big-shadow-color: rgba(166, 194, 131, 0.5);
+    --btn-big-hover-text-color: #7f9d38;
+    --btn-big-hover-bg-color: #f6f9f0;
+    --btn-big-hover-border-color: #8faa3e;
+    --btn-big-hover-shadow-color: rgba(166, 194, 131, 0.5);
+
+    --btn-cart-text-color: #f6f9f0;
+    --btn-cart-bg-color: rgba(143, 170, 62, 0.9);
+    --btn-cart-border-color: #8faa3e;
+    --btn-cart-shadow-color: rgba(166, 194, 131, 0.5);
+    --btn-cart-hover-text-color: #7f9d38;
+    --btn-cart-hover-bg-color: #f6f9f0;
+    --btn-cart-hover-border-color: #8faa3e;
+    --btn-cart-hover-shadow-color: rgba(166, 194, 131, 0.5);
+
+    --btn-checkout-text-color: #f6f9f0;
+    --btn-checkout-bg-color: #8faa3e;
+    --btn-checkout-border-color: #8faa3e;
+    --btn-checkout-shadow-color: rgba(166, 194, 131, 0.35);
+    --btn-checkout-hover-text-color: #f6f9f0;
+    --btn-checkout-hover-bg-color: #7b9634;
+    --btn-checkout-hover-border-color: #7b9634;
+    --btn-checkout-hover-shadow-color: rgba(123, 150, 52, 0.45);
+
+    --btn-track-text-color: #f6f9f0;
+    --btn-track-bg-color: linear-gradient(135deg, #9db542, #6f8e33);
+    --btn-track-border-color: #8faa3e;
+    --btn-track-shadow-color: rgba(15, 26, 11, 0.35);
+    --btn-track-hover-text-color: #f6f9f0;
+    --btn-track-hover-bg-color: linear-gradient(135deg, #aac551, #7a9b38);
+    --btn-track-hover-border-color: #8faa3e;
+    --btn-track-hover-shadow-color: rgba(15, 26, 11, 0.45);
+    --btn-track-pulse-color: rgba(157, 181, 66, 0.55);
+
+    --btn-submit-text-color: #f6f9f0;
+    --btn-submit-bg-color: linear-gradient(45deg, #9db542, #6f8e33);
+    --btn-submit-border-color: #8faa3e;
+    --btn-submit-shadow-color: rgba(143, 170, 62, 0.2);
+    --btn-submit-hover-text-color: #f6f9f0;
+    --btn-submit-hover-bg-color: linear-gradient(45deg, #aac551, #7a9b38);
+    --btn-submit-hover-border-color: #8faa3e;
+    --btn-submit-hover-shadow-color: rgba(143, 170, 62, 0.4);
+}

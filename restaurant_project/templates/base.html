@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+
+
+
+<html lang="en">
+<head>
+    <script>
+        (function () {
+            var serverTheme = "{{ active_theme|default:'default' }}";
+            try {
+                var savedTheme = localStorage.getItem("restaurant_theme") || serverTheme;
+                document.documentElement.setAttribute("data-theme", savedTheme);
+            } catch (error) {
+                document.documentElement.setAttribute("data-theme", serverTheme);
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="{% static './Images/dish.png' %}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'menu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'cart.css' %}"/>
+    <link rel="stylesheet" href="{% static 'themes/theme-tokens.css' %}"/>
+    <link rel="stylesheet" href="{% static 'themes/theme-default.css' %}"/>
+    <link rel="stylesheet" href="{% static 'themes/theme-light.css' %}"/>
+    <link rel="stylesheet" href="{% static 'themes/theme-olive.css' %}"/>
+    <link rel="stylesheet" href="{% static 'themes/theme-sunset.css' %}"/>
+    <link rel="stylesheet" href="{% static 'live-chat.css' %}"/>
+    <title>Food Website | Home</title>
+</head>
+
+
+
+<body>
+
+    <div id="cart-toast" class="cart-toast">Added to cart</div>
+
+    <header>
+        <div class="header">
+
+            <div class="headerbar">
+                <div class="account">
+                    <ul>
+                        <a href="{% url "Cart" %}">
+                            <li>
+                                <div class="cart-icon">
+                                    <p class="cart-count">{{ cart_count|default:0 }}</p>
+                                    <img src="{% static './Images/cart-icon.png' %}" alt="">
+                                </div>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <i class="fa-solid  searchicon" id="searchicon1"></i>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                {% comment %} Nav Menu For Mobiles or Tablets {% endcomment %}
+                <div class="nav">
+                    <ul>
+
+                        <a href="{% url 'Home' %}" class="nav-link">
+                            <li>Home</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#chef_section" class="nav-link">
+                            <li>About</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#deals_section" class="nav-link">
+                            <li>Deals</li>
+                        </a>
+
+                        <a href="{% url 'Menu' %}" class="nav-link">
+                            <li>Our Menu</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#best-food_section" class="nav-link">
+                            <li>Special Burger</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#day_section" class="nav-link">
+                            <li>Daily Delights</li>
+                        </a>
+
+                        <div class="auth-nav">
+                            {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'account_logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-btn logout-btn">Logout</button>
+                                </form>
+                            {% else %}
+                                <a href="{% provider_login_url 'google' %}" class="nav-btn login-btn">
+                                    Login
+                                </a>
+                            {% endif %}
+                        </div>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="logo">
+                <img src=" {% static './Images/logo.png' %}" alt="">
+            </div>
+            <a href="{% url "Cart" %}">
+                <div class="cart-icon2">
+                    <p class="cart-count">{{ cart_count|default:0 }}</p>
+                    <img src="{% static './Images/cart-icon.png' %}" alt="">
+                </div>
+            </a>
+            <div class="bar">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-xmark" id="hdcross"></i>
+            </div>
+            <div class="nav nav-desktop">
+                <ul>
+                        <a href="{% url 'Home' %}" class="nav-link">
+                            <li>Home</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#chef_section" class="nav-link">
+                            <li>About</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#deals_section" class="nav-link">
+                            <li>Deals</li>
+                        </a>
+
+                        <a href="{% url 'Menu' %}" class="nav-link">
+                            <li>Our Menu</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#best-food_section" class="nav-link">
+                            <li>Special Burger</li>
+                        </a>
+
+                        <a href="{% url 'Home' %}#day_section" class="nav-link">
+                            <li>Daily Delights</li>
+                        </a>
+
+                </ul>
+            </div>
+            <div class="account">
+                <ul>
+                    <a href="{% url "Cart" %}">
+                        <li>
+                            <div class="cart-icon">
+                                <p class="cart-count">{{ cart_count|default:0 }}</p>
+                                <img src="{% static './Images/cart-icon.png' %}" alt="">
+                            </div>
+                        </li>
+                    </a>
+
+                    <a href="#">
+                        <li>
+                            <i class="fa-solid  searchicon" id="searchicon2"></i>
+                        </li>
+                    </a>
+
+                </ul>
+            </div>
+            <div class="auth-nav">
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-btn logout-btn">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% provider_login_url 'google' %}" class="nav-btn login-btn">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+    </header>
+
+    {% block Home %}{% endblock Home %}
+
+    {% block Menu %}{% endblock Menu %}
+
+    {% block cart %}{% endblock cart %}
+
+    <div
+        id="live-chat-widget"
+        class="live-chat-widget"
+        data-bootstrap-url="{% url 'live_chat_bootstrap' %}"
+        data-messages-url="{% url 'live_chat_messages' %}"
+        data-send-url="{% url 'live_chat_send' %}">
+        <button id="live-chat-toggle" class="live-chat-toggle" type="button" aria-label="Open live chat">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span id="live-chat-unread" class="live-chat-unread is-hidden">0</span>
+        </button>
+        <section id="live-chat-panel" class="live-chat-panel" aria-live="polite">
+            <div class="live-chat-header">
+                <div>
+                    <h4>Live Support</h4>
+                    <p id="live-chat-subtitle">We usually reply quickly.</p>
+                </div>
+                <button id="live-chat-close" class="live-chat-close" type="button" aria-label="Close chat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="live-chat-messages" class="live-chat-messages"></div>
+            <form id="live-chat-form" class="live-chat-form">
+                {% csrf_token %}
+                <input id="live-chat-input" type="text" maxlength="1200" placeholder="Type your message..." autocomplete="off" />
+                <button id="live-chat-send" type="submit">Send</button>
+            </form>
+        </section>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer-1">
+            <div class="logo">
+                <img src=" {% static './Images/logo.png' %}" alt="">
+            </div>
+            <div class="food-img">
+                <img src=" {% static './Images/ChatGPT Burger.png' %}" alt="">
+            </div>
+        </div>
+        <div class="footer-content">
+            <h4>Social</h4>
+            <ul>
+                <a href="#">
+                    <li>Instagram</li>
+                </a>
+                <a href="#">
+                    <li>Facebook</li>
+                </a>
+                <a href="#">
+                    <li>Twitter</li>
+                </a>
+            </ul>
+        </div>
+        <div class="footer-content">
+            <h4>Pages</h4>
+            <ul>
+
+                <a href="index.html">
+                    <li>Home</li>
+                </a>
+                <a href="#chef_section">
+                    <li>About</li>
+                </a>
+                <a href="menu.html">
+                    <li>Menu</li>
+                </a>
+            </ul>
+        </div>
+        <div class="footer-content">
+            <h4>Location</h4>
+            <ul>
+                <p>Johar Town,<br>
+                    Block F,
+                    Street No 2,<br>
+                    Lahore
+                </p>
+            </ul>
+        </div>
+    </div>
+    <div class="hyderix">
+        <div class="hyderix-1">
+            <p>Powered by <div><img src=" {% static './Images/HYDERIX WT.png' %}" alt=""></div></p>
+            <p>Developed by <span>Usama</span></p>
+        </div>
+        <div class="hyderix-2">
+            <p>Hyderix6@gmail.com</p>
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'menu.js' %}" ></script>
+    
+    <script src="{% static 'home.js' %}" ></script>
+
+    <script src="{% static 'app.js' %}" ></script>
+
+    <script src="{% static 'cart.js' %}" ></script>
+    
+    <script src="{% static 'live-chat.js' %}"></script>
+
+    <script src="{% static 'theme-manager.js' %}"></script>
+
+</body>
+
+</html>

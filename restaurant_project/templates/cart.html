@@ -1,0 +1,391 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block cart %}
+
+<section class="cart-page">
+
+        <div class="shopping">
+            <h2>Shopping Cart</h2>
+            <div class="line">
+                <div class="line-1"></div>
+            </div>
+
+            <ul>
+                <li>Product</li>
+                <li>Quantity</li>
+                <li>Price</li>
+            </ul>
+
+            {% if cart %}
+                {% for key, item in cart.items %}
+                <div class="product-cart">
+
+                    <div class="product-detail">
+                        <div class="image">
+                            {% if item.image %}
+                                <img src="{{ item.image }}" alt="">
+                            {% else %}
+                                <img src="{% static './Images/ChatGPT Burger.png' %}" alt="">
+                            {% endif %}
+                        </div>
+
+                        <div class="name">
+                            <h4>{{ item.name }}</h4>
+                            <p class="type">
+                                <span>Type:</span> {{ item.size|title }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qty">
+                        <div class="decrease">
+                            <button type="button" class="qty-btn" data-id="{{ key }}" data-action="decrease">-</button>
+                        </div>
+
+                        <p class="count" id="qty-{{ key }}">{{ item.quantity }}</p>
+
+                        <div class="increase">
+                            <button type="button" class="qty-btn" data-id="{{ key }}" data-action="increase">+</button>
+                        </div>
+                    </div>
+
+                    <div class="end-row">
+                        <div class="price">
+                            <p id="price-{{ key }}">
+                                Rs. {{ item.total_price|floatformat:2 }}
+                            </p>
+                        </div>
+
+                        <div class="delete">
+                            <button type="button" class="delete-btn" data-id="{{ key }}">
+                                <img src="{% static './Images/bin.png' %}" alt="">
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+                <hr>
+                <h3>Total: Rs. <span id="cart-subtotal">{{ subtotal }}</span></h3>
+
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+
+        </div>
+
+    <div class="checkout-section">
+
+            <h2>Checkout Details</h2>
+
+
+            <div class="line-1"></div>
+
+
+            <div class="customer-info">
+
+                <label for="name">Full Name</label>
+                <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                value="{% if user.is_authenticated %}{% firstof user.get_full_name user.username %}{% elif guest %}{{ guest.name|default:'' }}{% endif %}"
+                placeholder="Enter your name"
+                required>
+
+
+                <label for="email">Email</label>
+                <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                value="{% if user.is_authenticated %}{{ user.email|default:'' }}{% elif guest %}{{ guest.email|default:'' }}{% endif %}"
+                placeholder="Enter email">
+
+
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel"
+                autocomplete="tel"
+                value="{% if profile %}{{ profile.phone|default:'' }}{% elif guest %}{{ guest.phone|default:'' }}{% endif %}"
+                placeholder="Phone"
+                required>
+
+
+                <label for="address">Address</label>
+                <input id="address" name="address" type="text"
+                autocomplete="street-address"
+                value="{% if profile %}{{ profile.address|default:'' }}{% elif guest %}{{ guest.address|default:'' }}{% endif %}"
+                placeholder="Address"
+                required>
+
+
+                <label for="payment">Payment Method</label>
+                <select id="payment" name="payment">
+                    <option value="cash">Cash on Delivery</option>
+                    <!-- <option value="card">Debit / Credit Card</option>
+                    <option value="wallet">Online Wallet</option> -->
+                </select>
+            </div>
+
+        <div class="bill-box">
+
+            <div class="row">
+                <span>Subtotal:</span>
+                <span id="checkout-subtotal">{{ subtotal }}</span>
+            </div>
+
+            <div class="row">
+                <span>
+                    Tax 
+                    {% if tax_percent %}
+                        ({{ tax_percent }}%)
+                    {% endif %}
+                    :
+                </span>
+                <span id="checkout-tax">{{ tax }}</span>
+            </div>
+
+            <div class="row">
+                <span>
+                    Discount
+                    <span id="checkout-discount-rate" {% if discount_percent <= 0 %}style="display:none;"{% endif %}>
+                        ({{ discount_percent }}%)
+                    </span>
+                    :
+                </span>
+                <span id="checkout-discount">{{ discount }}</span>
+            </div>
+
+            <div class="row">
+                <span>Delivery:</span>
+                <span id="checkout-delivery">{{ delivery }}</span>
+            </div>
+
+            <div class="row total">
+                <span>Total:</span>
+                <span id="checkout-total">{{ total }}</span>
+            </div>
+            {% comment %} ///// {% endcomment %}
+
+            <!-- BIG DISCOUNT HIGHLIGHT -->
+            {% if discount_percent > 0 %}
+                <div class="big-discount" id="checkout-big-discount">
+                    🎉 {{ discount_percent }}% OFF Applied!
+                </div>
+            {% endif %}
+
+            <!-- YOU SAVED LINE -->
+            {% if you_saved > 0 %}
+                <div class="you-saved" id="checkout-saved">
+                    You saved Rs.{{ you_saved }} on this order!
+                </div>
+            {% endif %}
+            <div
+                class="free-delivery-message"
+                id="free-delivery-message"
+                {% if not free_delivery_qualified and amount_needed_for_free_delivery <= 0 %}style="display:none;"{% endif %}
+            >
+                {% if free_delivery_qualified %}
+                    🚚 You unlocked FREE delivery! (Saved Rs.{{ delivery_saved }})
+                {% elif amount_needed_for_free_delivery > 0 %}
+                    🛒 Add Rs.{{ amount_needed_for_free_delivery }} more to get FREE delivery!
+                {% endif %}
+            </div>  
+
+            <!-- SPECIAL OFFER BADGE + TIMER -->
+            {% if special_active %}
+            <div class="special-offer-box" id="special-offer-box">
+                <span class="offer-badge">🔥 LIMITED OFFER</span>
+                <div class="offer-percent">Extra {{ special_discount_percent }}% OFF</div>
+                <div class="countdown">
+                    Ends in: <span id="countdown-timer"></span>
+                </div>
+            </div>
+
+            <script>
+                const endDate = Date.parse("{{ special_discount_end|date:'c' }}");
+                const offerBox = document.getElementById("special-offer-box");
+                const timerElement = document.getElementById("countdown-timer");
+
+                if (offerBox && timerElement && !Number.isNaN(endDate)) {
+
+                const timer = setInterval(function () {
+
+                    const now = Date.now();
+                    const distance = endDate - now;
+
+                    if (distance <= 0) {
+                        clearInterval(timer);
+
+                        timerElement.innerText = "Expired";
+                        offerBox.classList.add("hide-offer");
+
+                        setTimeout(() => {
+                            offerBox.remove();
+                        }, 500);
+
+                        if (typeof window.refreshCartTotalsAfterOfferExpiry === "function") {
+                            window.refreshCartTotalsAfterOfferExpiry();
+                        }
+
+                        return;
+                    }
+
+                    // ✅ Time calculations including seconds
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // ✅ Format to always show 2 digits
+                    const format = (num) => num.toString().padStart(2, "0");
+
+                    if (timerElement) {
+                        timerElement.innerHTML =
+                            `<span>${format(days)}</span>d 
+                            <span>${format(hours)}</span>h 
+                            <span>${format(minutes)}</span>m 
+                            <span>${format(seconds)}</span>s`;
+                    }
+
+                }, 1000);
+                }
+            </script>
+            {% endif %}
+
+            {% comment %} Marketing Message for Discount for logging In  {% endcomment %}
+           {% if user.is_authenticated and auth_discount_percent > 0 %}
+                <div class="discount-message success">
+                    🎉 You received {{ auth_discount_percent }}% extra discount for being logged in!
+                </div>
+            {% endif %}
+
+            {% load socialaccount %}
+
+            {% if not user.is_authenticated and auth_discount_percent > 0 %}
+                <div class="discount-message promo">
+                    <span class="lock-icon">🔐</span>
+                    <a href="{% provider_login_url 'google' %}">
+                        Sign up with Google
+                    </a>
+                    to unlock extra <strong>{{ auth_discount_percent }}%</strong> discount!
+                </div>
+            {% endif %}
+
+            {% if special_discount_percent > 0 %}
+                <div class="row" id="special-offer-status-row">
+                    <small style="color:red;">
+                        🔥 Special Offer Active!
+                    </small>
+                </div>
+            {% endif %}
+
+            <button class="checkout-btn" data-url="{% url 'place_order' %}" {% if not cart %}disabled{% endif %}>
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+        <div id="orderPopup" class="popup">
+
+            <div class="popup-content">
+
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+
+                <h2>Order Placed Successfully 🎉</h2>
+
+                <p>
+                Tracking ID:
+                <strong id="trackingId"></strong>
+                </p>
+
+                <p>
+                Order Number:
+                <strong id="orderNumber"></strong>
+                </p>
+
+                <div id="trackingOrderListWrap" class="tracking-order-list-wrap" {% if not trackable_orders %}style="display:none;"{% endif %}>
+                    <h3>Your Orders</h3>
+                    <div id="trackingOrderList" class="tracking-order-list">
+                        {% for order in trackable_orders %}
+                        <button
+                            type="button"
+                            class="tracking-order-chip{% if forloop.first %} is-active{% endif %}"
+                            data-tracking-id="{{ order.tracking_id }}"
+                            data-order-number="{{ order.order_number }}"
+                        >
+                            {{ order.order_number }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <p>
+                Status:
+                <strong id="orderStatus" class="status-pill"></strong>
+                </p>
+
+                <p id="trackingMessage" class="tracking-message"></p>
+
+                <div id="trackingNextStep" class="tracking-next-step" style="display:none;">
+                    <p>
+                        Next update:
+                        <strong id="nextStatusLabel"></strong>
+                    </p>
+                    <p>
+                        Auto update in:
+                        <strong id="nextStatusCountdown"></strong>
+                    </p>
+                </div>
+
+                <div id="trackingExpiryBox" class="tracking-expiry-box" style="display:none;">
+                    <p>
+                        Tracking available for:
+                        <strong id="trackingExpiryCountdown"></strong>
+                    </p>
+                </div>
+
+                <div id="deliveredMessageBox" class="delivered-message" style="display:none;"></div>
+
+                <div id="trackingExpiredBox" class="tracking-expired-box" style="display:none;"></div>
+
+                <div class="tracking-order-details">
+                    <h3>Order Details</h3>
+                    <div id="trackingOrderDetails"></div>
+                </div>
+
+                <div class="tracking-timeline">
+                    <h3>Tracking Timeline</h3>
+                    <div id="trackingTimeline"></div>
+                </div>
+
+                <div class="popup-actions">
+                    <button type="button" id="cancelOrderBtn" style="display:none;">Cancel Order</button>
+                    <button type="button" onclick="copyTracking()">Copy Tracking ID</button>
+                </div>
+
+            </div>
+
+        </div>
+        
+    <button
+        id="trackOrderBtn"
+        class="track-order-btn"
+        data-tracking-id="{% if last_order %}{{ last_order.tracking_id }}{% endif %}"
+        {% if not trackable_orders %}style="display:none;"{% endif %}
+    >
+    📦 Track Your Order
+    </button>
+
+
+</section>
+
+{% endblock cart %}
