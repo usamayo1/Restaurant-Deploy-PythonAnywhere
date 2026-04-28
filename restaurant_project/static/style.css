@@ -680,13 +680,13 @@ header {
 
 /* ✅ Image 1 */
 /* .main_slide::before {
-    background-image: url('./Images/lemon\ dessert\ B.jpg');
+    background-image: url("./Images/lemon dessert B.jpg");
     animation: fadeZoom1 14s infinite;
 } */
 
 /* ✅ Image 2 */
 /* .main_slide::after {
-    background-image: url('./Images/restaurant\ chef\ C.jpg');
+    background-image: url("./Images/restaurant chef C.jpg");
     animation: fadeZoom2 14s infinite;
 }  */
 

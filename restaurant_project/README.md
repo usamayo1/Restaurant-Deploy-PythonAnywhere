@@ -20,11 +20,20 @@ Use these for secure/prod deployment:
 - `DJANGO_DEBUG` (`true`/`false`)
 - `DJANGO_ALLOWED_HOSTS` (comma-separated)
 - `DJANGO_CSRF_TRUSTED_ORIGINS` (comma-separated)
+- `DATABASE_URL` (Render Postgres connection string for production)
 - `DJANGO_TIME_ZONE` (default: `Asia/Karachi`)
 - `DJANGO_SECURE_SSL_REDIRECT`
 - `DJANGO_SECURE_HSTS_SECONDS`
 
 You can start from `.env.example`.
+
+## Render Deployment
+- The repo includes `render.yaml` for a free Render web service and free Render Postgres database.
+- The repo includes `build.sh`, which installs dependencies, runs `collectstatic`, and applies migrations.
+- Static files are served with WhiteNoise in production.
+- Local development still falls back to SQLite when `DATABASE_URL` is not set.
+- Do not commit `venv/`, `.venv/`, or local secrets.
+- Do not rely on local `media/` uploads in Render free hosting, because filesystem changes are not persistent across redeploys/restarts.
 
 ## Tests
 Run:
