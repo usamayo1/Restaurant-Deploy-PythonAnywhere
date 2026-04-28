@@ -28,9 +28,12 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
-render_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "").strip()
-if render_hostname and render_hostname not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append(render_hostname)
+platform_hostname = (
+    os.getenv("RENDER_EXTERNAL_HOSTNAME", "")
+    or os.getenv("PYTHONANYWHERE_DOMAIN", "")
+).strip()
+if platform_hostname and platform_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(platform_hostname)
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
@@ -38,10 +41,10 @@ CSRF_TRUSTED_ORIGINS = [
     if origin.strip()
 ]
 
-if render_hostname:
-    render_origin = f"https://{render_hostname}"
-    if render_origin not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS.append(render_origin)
+if platform_hostname:
+    platform_origin = f"https://{platform_hostname}"
+    if platform_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(platform_origin)
 
 
 INSTALLED_APPS = [

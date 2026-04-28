@@ -35,6 +35,14 @@ You can start from `.env.example`.
 - Do not commit `venv/`, `.venv/`, or local secrets.
 - Do not rely on local `media/` uploads in Render free hosting, because filesystem changes are not persistent across redeploys/restarts.
 
+## PythonAnywhere Deployment
+- This project also works on PythonAnywhere with SQLite on the free plan.
+- Set `PYTHONANYWHERE_DOMAIN` to your PythonAnywhere hostname, for example `yourusername.pythonanywhere.com`.
+- Keep `DATABASE_URL` empty on the free plan so the app uses SQLite.
+- Run `python manage.py collectstatic` after uploading the code.
+- Configure static files in PythonAnywhere's Web tab to serve `/static/` from the project's `staticfiles` directory.
+- A full step-by-step guide is in `PYTHONANYWHERE.md`.
+
 ## Tests
 Run:
 - `python manage.py test`
