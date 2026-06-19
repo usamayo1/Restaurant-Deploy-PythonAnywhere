@@ -11,6 +11,24 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from food.models import *
 
+# adding code for to see the Emails in the admin panel of customers
+
+
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+
+admin.site.unregister(User)
+
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    list_display = (
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+        "is_staff",
+    )
+
 # Register your models here.
 
 admin.site.site_header = "Little Lemon Control Room"
