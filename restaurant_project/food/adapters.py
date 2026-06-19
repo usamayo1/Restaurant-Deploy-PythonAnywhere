@@ -9,24 +9,23 @@ class MySocialAccountAdapter(DefaultSocialAccountAdapter):
 
         data = sociallogin.account.extra_data
 
-        # Save Google email
-        user.email = data.get("email", user.email)
+        # Save user information if available
+        if data.get("email"):
+            user.email = data["email"]
 
-        # Save first name
-        user.first_name = data.get("given_name", user.first_name)
+        if data.get("given_name"):
+            user.first_name = data["given_name"]
 
-        # Save last name
-        user.last_name = data.get("family_name", user.last_name)
+        if data.get("family_name"):
+            user.last_name = data["family_name"]
 
         user.save()
 
-        # Create profile if it doesn't exist
+        # Create or update profile
         profile, created = UserProfile.objects.get_or_create(user=user)
 
-        # Save profile picture
-        picture_url = data.get("picture")
-        if picture_url:
-            profile.profile_image = picture_url
+        if data.get("picture"):
+            profile.profile_image = data["picture"]
 
         profile.save()
 
