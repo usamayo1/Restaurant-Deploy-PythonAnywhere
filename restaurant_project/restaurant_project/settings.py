@@ -21,7 +21,7 @@ def env_bool(name, default=False):
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-dev-only-change-me")
 DEBUG = env_bool("DJANGO_DEBUG", True)
 
-default_hosts = "localhost,127.0.0.1,testserver"
+default_hosts = "localhost,127.0.0.1,testserver,usama60.pythonanywhere.com"
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv("DJANGO_ALLOWED_HOSTS", default_hosts).split(",")
